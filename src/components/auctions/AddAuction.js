@@ -10,7 +10,9 @@ export const AddAuction = ({ setAuction }) => {
   const itemTitle = useRef();
   const itemDesc = useRef();
   const startPrice = useRef();
-  const itemDuration = useRef();
+  const itemHours = useRef();
+  const itemMinutes = useRef();
+  
   const itemImage = useRef();
 
   const { currentUser } = useContext(AuthContext);
@@ -29,9 +31,12 @@ export const AddAuction = ({ setAuction }) => {
     }
 
     let currentDate = new Date();
-     let dueDate = currentDate.setHours(
-       currentDate.getHours() + itemDuration.current.value
-     );
+    let dueDate = currentDate.setHours(
+      currentDate.getHours() + parseInt(itemHours.current.value)
+    );
+    dueDate = currentDate.setMinutes(
+      currentDate.getMinutes() + parseInt(itemMinutes.current.value)
+    );
 
     let newAuction = {
       email: currentUser.email,
@@ -83,8 +88,14 @@ export const AddAuction = ({ setAuction }) => {
               </Col>
               <Col>
                 <Form.Group>
-                  <Form.Label>Item Duration in hours</Form.Label>
-                  <Form.Control type="number" required ref={itemDuration} />
+                  <Form.Label>Duration in hours</Form.Label>
+                  <Form.Control type="number" required ref={itemHours} />
+                </Form.Group>
+              </Col>
+              <Col>
+                <Form.Group>
+                  <Form.Label>Minutes</Form.Label>
+                  <Form.Control type="number" required ref={itemMinutes} />
                 </Form.Group>
               </Col>
             </Row>
