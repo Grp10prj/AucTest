@@ -208,7 +208,7 @@ export const AuctionCard = ({ item }) => {
                   </div>
                 )}
               </div>
-              <p className="display-6">${props.item.curPrice}</p>
+              <p className="display-6">₹{props.item.curPrice}</p>
             </div>
           </div>
         </div>
